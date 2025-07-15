@@ -158,33 +158,39 @@ body.dark .entry strong {
 }
 
 .entry {
+  padding: 12px;
+  border-radius: 10px;
+  margin-top: 15px;
+  border: 1px solid #ddd;
   animation: fadeInUp 0.5s ease forwards;
 }
 
+
 /* 🎨 Mood-based colors */
 .entry[data-mood="😊"] {
-  border-left: 6px solid #7ED957;
+  background-color: #eaffea; /* soft green */
 }
 
 .entry[data-mood="😢"] {
-  border-left: 6px solid #7EC8E3;
+  background-color: #e6f4ff; /* soft blue */
 }
 
 .entry[data-mood="😌"] {
-  border-left: 6px solid #FFDEB4;
+  background-color: #fff6dd; /* soft yellow-beige */
 }
 
 .entry[data-mood="😠"] {
-  border-left: 6px solid #FF8A8A;
+  background-color: #ffe5e5; /* soft red */
 }
 
 .entry[data-mood="🤯"] {
-  border-left: 6px solid #C084FC;
+  background-color: #f5e6ff; /* soft purple */
 }
 
 .entry[data-mood="🌈"] {
-  border-left: 6px solid #A3F4C1;
+  background-color: #e4fff1; /* soft mint */
 }
+
 
 /* 🌸 Soft page fade */
 body {
