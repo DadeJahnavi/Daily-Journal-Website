@@ -221,3 +221,23 @@ h1 {
     border-color: transparent;
   }
 }
+/* 🌈 Mood-based backgrounds (light mode) */
+body:not(.dark) .entry[data-mood="😊"] { background-color: #eaffea; }   /* Happy - pastel green */
+body:not(.dark) .entry[data-mood="😢"] { background-color: #e6f0ff; }   /* Sad - soft blue */
+body:not(.dark) .entry[data-mood="😌"] { background-color: #fff6da; }   /* Grateful - cream yellow */
+body:not(.dark) .entry[data-mood="😠"] { background-color: #ffeaea; }   /* Angry - light red */
+body:not(.dark) .entry[data-mood="🤯"] { background-color: #f3e8ff; }   /* Stressed - light purple */
+body:not(.dark) .entry[data-mood="🌈"] { background-color: #e4fff2; }   /* Hopeful - mint */
+
+/* 🌙 Mood-based backgrounds (dark mode) */
+body.dark .entry[data-mood="😊"] { background-color: #245e36; }    /* forest green */
+body.dark .entry[data-mood="😢"] { background-color: #1e3a5f; }    /* navy blue */
+body.dark .entry[data-mood="😌"] { background-color: #5c5132; }    /* warm muted yellow */
+body.dark .entry[data-mood="😠"] { background-color: #5a2c2c; }    /* muted red */
+body.dark .entry[data-mood="🤯"] { background-color: #4e3a5e; }    /* muted purple */
+body.dark .entry[data-mood="🌈"] { background-color: #1f594a; }    /* teal green */
+
+/* Text color fix for dark mode entries */
+body.dark .entry {
+  color: #f0f0f0;
+}
