@@ -95,3 +95,12 @@ function exportEntry(index) {
 
 // 🔁 Load entries on page load
 loadEntries();
+{
+div.className = "entry";
+div.setAttribute("data-mood", entry.mood);
+}
+
+// ✨ Soft fade on page load
+window.addEventListener("DOMContentLoaded", () => {
+  document.body.classList.add("loaded");
+});
