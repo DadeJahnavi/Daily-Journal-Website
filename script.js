@@ -6,7 +6,7 @@ const filterMood = document.getElementById("filter-mood");
 const entriesDiv = document.getElementById("entries");
 const toggleBtn = document.getElementById("toggle-mode");
 
-entryDate.valueAsDate = new Date();
+entryDate.valueAsDate = new Date(); // Set today's date
 
 // 🌙 Dark mode toggle
 toggleBtn.addEventListener("click", () => {
@@ -59,11 +59,14 @@ function loadEntries(dateFilter = "", moodFilter = "") {
 
     const div = document.createElement("div");
     div.className = "entry";
+    div.setAttribute("data-mood", entry.mood); // 🎨 Mood-based border
+
     div.innerHTML = `
       <strong>${entry.date} — ${entry.mood}</strong>
       <p>${entry.text}</p>
       <button class="export-btn" onclick="exportEntry(${indexInAll})">Export as .txt</button>
     `;
+
     entriesDiv.appendChild(div);
   });
 }
@@ -79,7 +82,7 @@ function showAll() {
   loadEntries();
 }
 
-// 📄 Export text file (by original index)
+// 📄 Export entry to .txt
 function exportEntry(index) {
   const all = JSON.parse(localStorage.getItem("journalEntries") || "[]");
   const entry = all[index];
@@ -93,14 +96,8 @@ function exportEntry(index) {
   URL.revokeObjectURL(url);
 }
 
-// 🔁 Load entries on page load
-loadEntries();
-{
-div.className = "entry";
-div.setAttribute("data-mood", entry.mood);
-}
-
 // ✨ Soft fade on page load
 window.addEventListener("DOMContentLoaded", () => {
   document.body.classList.add("loaded");
+  loadEntries(); // Load entries once DOM is ready
 });
