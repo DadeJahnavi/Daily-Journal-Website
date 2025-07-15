@@ -145,3 +145,73 @@ body.dark .entry strong {
     margin: 10px 0;
   }
 }
+/* ✨ Fade-slide animation for journal entries */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.entry {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+/* 🎨 Mood-based colors */
+.entry[data-mood="😊"] {
+  border-left: 6px solid #7ED957;
+}
+
+.entry[data-mood="😢"] {
+  border-left: 6px solid #7EC8E3;
+}
+
+.entry[data-mood="😌"] {
+  border-left: 6px solid #FFDEB4;
+}
+
+.entry[data-mood="😠"] {
+  border-left: 6px solid #FF8A8A;
+}
+
+.entry[data-mood="🤯"] {
+  border-left: 6px solid #C084FC;
+}
+
+.entry[data-mood="🌈"] {
+  border-left: 6px solid #A3F4C1;
+}
+
+/* 🌸 Soft page fade */
+body {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+body.loaded {
+  opacity: 1;
+}
+
+/* 🖋️ Typewriter effect for title */
+h1 {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #ccc;
+  width: 0;
+  animation: typing 2s steps(20, end) forwards, blink 0.8s infinite;
+}
+
+@keyframes typing {
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
