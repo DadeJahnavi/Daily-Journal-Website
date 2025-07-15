@@ -40,7 +40,7 @@ Built with **HTML, CSS, and JavaScript**, this project offers a gentle space for
 3. Start writing your daily reflections! 💖
 
 ## 🌐 Live Demo
-🔗 [View it live on Netlify][(https://reflectra.netlify.app/)]  
+🔗 [View it live on Netlify](https://reflectra.netlify.app/)  
 
 > “Some days are for writing light. Some are for releasing weight.” ✨  
 🛡 Designed and written with love by **Dade Jahnavi**, 2025.  
