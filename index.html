@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pastel Journal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🌸 Daily Journal</h1>
+
+    <button id="toggle-mode">Toggle Dark Mode</button>
+
+    <label for="entry-date">Date:</label>
+    <input type="date" id="entry-date" />
+
+    <label for="entry-mood">Mood/Tag:</label>
+    <select id="entry-mood">
+      <option value="😊">Happy</option>
+      <option value="😢">Sad</option>
+      <option value="😌">Grateful</option>
+      <option value="😠">Angry</option>
+      <option value="🤯">Stressed</option>
+      <option value="🌈">Hopeful</option>
+    </select>
+
+    <textarea id="entry-text" rows="6" placeholder="Write your reflection..."></textarea>
+    <button onclick="saveEntry()">Save Entry</button>
+
+    <div class="filter-box">
+      <h3>Filter by Date</h3>
+      <input type="date" id="filter-date" />
+      <button onclick="filterEntries()">Filter</button>
+      <button onclick="showAll()">Show All</button>
+    </div>
+
+    <div id="entries"></div>
+  </div>
+  <div class="credit-badge">© Dade Jahnavi 2025</div>
+  <script src="script.js"></script>
+</body>
+</html>
