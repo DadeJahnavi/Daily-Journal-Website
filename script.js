@@ -6,14 +6,14 @@ const filterMood = document.getElementById("filter-mood");
 const entriesDiv = document.getElementById("entries");
 const toggleBtn = document.getElementById("toggle-mode");
 
-entryDate.valueAsDate = new Date(); // Set today's date
+entryDate.valueAsDate = new Date();
 
-// 🌙 Dark mode toggle
+// Dark mode toggle
 toggleBtn.addEventListener("click", () => {
   document.body.classList.toggle("dark");
 });
 
-// ✅ Save multiple entries per day
+// Save entry
 function saveEntry() {
   const date = entryDate.value;
   const text = entryText.value.trim();
@@ -31,47 +31,36 @@ function saveEntry() {
   loadEntries();
 }
 
-// 📤 Load entries with optional date + mood filters
+// Load entries with optional filters
 function loadEntries(dateFilter = "", moodFilter = "") {
   entriesDiv.innerHTML = "";
   const allEntries = JSON.parse(localStorage.getItem("journalEntries") || "[]");
-
   let filtered = allEntries;
 
-  if (dateFilter) {
-    filtered = filtered.filter((e) => e.date === dateFilter);
-  }
-
-  if (moodFilter) {
-    filtered = filtered.filter((e) => e.mood === moodFilter);
-  }
-
+  if (dateFilter) filtered = filtered.filter(e => e.date === dateFilter);
+  if (moodFilter) filtered = filtered.filter(e => e.mood === moodFilter);
   if (filtered.length === 0) {
     entriesDiv.innerHTML = "<p>No entries found.</p>";
     return;
   }
 
-  // Show latest entries first
-  filtered.reverse().forEach((entry) => {
-    const indexInAll = allEntries.findIndex(
-      (e) => e.date === entry.date && e.text === entry.text && e.mood === entry.mood
-    );
-
+  filtered.reverse().forEach((entry, i) => {
+    const indexInAll = allEntries.findIndex(e => e.date === entry.date && e.text === entry.text && e.mood === entry.mood);
     const div = document.createElement("div");
     div.className = "entry";
-    div.setAttribute("data-mood", entry.mood); // 🎨 Mood-based border
+    div.setAttribute("data-mood", entry.mood);
 
     div.innerHTML = `
       <strong>${entry.date} — ${entry.mood}</strong>
       <p>${entry.text}</p>
       <button class="export-btn" onclick="exportEntry(${indexInAll})">Export as .txt</button>
+      <button class="delete-btn" onclick="deleteEntry(${indexInAll})">Delete</button>
     `;
 
     entriesDiv.appendChild(div);
   });
 }
 
-// 🧠 Mood/date filter logic
 function filterEntries() {
   loadEntries(filterDate.value, filterMood.value);
 }
@@ -82,12 +71,10 @@ function showAll() {
   loadEntries();
 }
 
-// 📄 Export entry to .txt
 function exportEntry(index) {
   const all = JSON.parse(localStorage.getItem("journalEntries") || "[]");
   const entry = all[index];
-  const content = entry.text;
-  const blob = new Blob([content], { type: "text/plain" });
+  const blob = new Blob([entry.text], { type: "text/plain" });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
@@ -96,8 +83,14 @@ function exportEntry(index) {
   URL.revokeObjectURL(url);
 }
 
-// ✨ Soft fade on page load
+function deleteEntry(index) {
+  const all = JSON.parse(localStorage.getItem("journalEntries") || "[]");
+  all.splice(index, 1);
+  localStorage.setItem("journalEntries", JSON.stringify(all));
+  loadEntries();
+}
+
 window.addEventListener("DOMContentLoaded", () => {
   document.body.classList.add("loaded");
-  loadEntries(); // Load entries once DOM is ready
+  loadEntries();
 });
