@@ -73,14 +73,14 @@ button:hover {
 
 /* Journal Entry Box */
 .entry {
-  background-color: var(--entry-bg);
   margin-top: 15px;
   padding: 12px;
   border-radius: 8px;
   border: 1px solid #ddd;
   white-space: pre-wrap;
-  transition: background 0.3s, border 0.3s;
+  transition: background-color 0.3s ease;
 }
+
 
 .entry p {
   margin: 5px 0;
