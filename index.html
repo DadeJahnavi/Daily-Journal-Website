@@ -29,11 +29,23 @@
     <button onclick="saveEntry()">Save Entry</button>
 
     <div class="filter-box">
-      <h3>Filter by Date</h3>
-      <input type="date" id="filter-date" />
-      <button onclick="filterEntries()">Filter</button>
-      <button onclick="showAll()">Show All</button>
-    </div>
+  <h3>Filter by Date</h3>
+  <input type="date" id="filter-date" />
+
+  <h3>Filter by Mood</h3>
+  <select id="filter-mood">
+    <option value="">— All Moods —</option>
+    <option value="😊">😊 Happy</option>
+    <option value="😢">😢 Sad</option>
+    <option value="😌">😌 Grateful</option>
+    <option value="😠">😠 Angry</option>
+    <option value="🤯">🤯 Stressed</option>
+    <option value="🌈">🌈 Hopeful</option>
+  </select>
+
+  <button onclick="filterEntries()">Filter</button>
+  <button onclick="showAll()">Show All</button>
+</div>
 
     <div id="entries"></div>
   </div>
