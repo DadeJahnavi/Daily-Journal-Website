@@ -34,9 +34,9 @@ function saveEntry() {
 // 📤 Load entries with optional date + mood filters
 function loadEntries(dateFilter = "", moodFilter = "") {
   entriesDiv.innerHTML = "";
-  const entries = JSON.parse(localStorage.getItem("journalEntries") || "[]");
+  const allEntries = JSON.parse(localStorage.getItem("journalEntries") || "[]");
 
-  let filtered = entries;
+  let filtered = allEntries;
 
   if (dateFilter) {
     filtered = filtered.filter((e) => e.date === dateFilter);
@@ -51,13 +51,18 @@ function loadEntries(dateFilter = "", moodFilter = "") {
     return;
   }
 
-  filtered.reverse().forEach((entry, index) => {
+  // Show latest entries first
+  filtered.reverse().forEach((entry) => {
+    const indexInAll = allEntries.findIndex(
+      (e) => e.date === entry.date && e.text === entry.text && e.mood === entry.mood
+    );
+
     const div = document.createElement("div");
     div.className = "entry";
     div.innerHTML = `
       <strong>${entry.date} — ${entry.mood}</strong>
       <p>${entry.text}</p>
-      <button class="export-btn" onclick="exportEntry(${index})">Export as .txt</button>
+      <button class="export-btn" onclick="exportEntry(${indexInAll})">Export as .txt</button>
     `;
     entriesDiv.appendChild(div);
   });
@@ -74,12 +79,10 @@ function showAll() {
   loadEntries();
 }
 
-// 📄 Export text file
-function exportEntry(displayIndex) {
+// 📄 Export text file (by original index)
+function exportEntry(index) {
   const all = JSON.parse(localStorage.getItem("journalEntries") || "[]");
-  const filtered = [...all].reverse();
-
-  const entry = filtered[displayIndex];
+  const entry = all[index];
   const content = entry.text;
   const blob = new Blob([content], { type: "text/plain" });
   const url = URL.createObjectURL(blob);
